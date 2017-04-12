@@ -11,7 +11,7 @@ import org.apache.avro.Schema;
  */
 public final class SchemaPairCompatibility {
   /** The details of this result. */
-  private final SchemaCompatibility.SchemaCompatibilityResult mResult;
+  private final SchemaCompatibilityResult mResult;
 
   /** Validated reader schema. */
   private final Schema mReader;
@@ -31,7 +31,7 @@ public final class SchemaPairCompatibility {
    * @param description of this compatibility result.
    */
   public SchemaPairCompatibility(
-      SchemaCompatibility.SchemaCompatibilityResult result,
+      SchemaCompatibilityResult result,
       Schema reader,
       Schema writer,
       String description) {
@@ -54,7 +54,7 @@ public final class SchemaPairCompatibility {
    * Gets more details about the compatibility, in particular if getType() is INCOMPATIBLE.
    * @return the details of this compatibility check.
    */
-  public SchemaCompatibility.SchemaCompatibilityResult getResult() {
+  public SchemaCompatibilityResult getResult() {
     return mResult;
   }
 

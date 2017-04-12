@@ -65,7 +65,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.avro.compatibility.SchemaCompatibility;
-import org.apache.avro.compatibility.SchemaCompatibility.SchemaCompatibilityResult;
+import org.apache.avro.compatibility.SchemaCompatibilityResult;
 import org.apache.avro.compatibility.SchemaCompatibility.SchemaCompatibilityType;
 import org.apache.avro.compatibility.SchemaCompatibility.SchemaIncompatibilityType;
 import org.apache.avro.compatibility.SchemaPairCompatibility;
@@ -102,7 +102,7 @@ public class TestSchemaCompatibility {
     final Schema reader = Schema.createRecord(readerFields);
     final SchemaPairCompatibility expectedResult =
         new SchemaPairCompatibility(
-            SchemaCompatibility.SchemaCompatibilityResult.compatible(),
+            SchemaCompatibilityResult.compatible(),
             reader,
             WRITER_SCHEMA,
             SchemaCompatibility.READER_WRITER_COMPATIBLE_MESSAGE);
@@ -118,7 +118,7 @@ public class TestSchemaCompatibility {
     final Schema reader = Schema.createRecord(readerFields);
     final SchemaPairCompatibility expectedResult =
         new SchemaPairCompatibility(
-            SchemaCompatibility.SchemaCompatibilityResult.compatible(),
+            SchemaCompatibilityResult.compatible(),
             reader,
             WRITER_SCHEMA,
             SchemaCompatibility.READER_WRITER_COMPATIBLE_MESSAGE);
@@ -135,7 +135,7 @@ public class TestSchemaCompatibility {
     final Schema reader = Schema.createRecord(readerFields);
     final SchemaPairCompatibility expectedResult =
         new SchemaPairCompatibility(
-            SchemaCompatibility.SchemaCompatibilityResult.compatible(),
+            SchemaCompatibilityResult.compatible(),
             reader,
             WRITER_SCHEMA,
             SchemaCompatibility.READER_WRITER_COMPATIBLE_MESSAGE);
@@ -152,7 +152,7 @@ public class TestSchemaCompatibility {
     final Schema reader = Schema.createRecord(readerFields);
     final SchemaPairCompatibility expectedResult =
         new SchemaPairCompatibility(
-            SchemaCompatibility.SchemaCompatibilityResult.compatible(),
+            SchemaCompatibilityResult.compatible(),
             reader,
             WRITER_SCHEMA,
             SchemaCompatibility.READER_WRITER_COMPATIBLE_MESSAGE);
@@ -171,7 +171,7 @@ public class TestSchemaCompatibility {
 
     // Test new field without default value.
     assertEquals(SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE, compatibility.getType());
-    assertEquals(SchemaCompatibility.SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.READER_FIELD_MISSING_DEFAULT_VALUE, reader, WRITER_SCHEMA, "newfield1", Arrays.asList("", "fields", "1")), compatibility.getResult());
+    assertEquals(SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.READER_FIELD_MISSING_DEFAULT_VALUE, reader, WRITER_SCHEMA, "newfield1", Arrays.asList("", "fields", "1")), compatibility.getResult());
     assertEquals(String.format("Data encoded using writer schema:%n%s%n"
         + "will or may fail to decode using reader schema:%n%s%n",
         WRITER_SCHEMA.toString(true),
@@ -186,13 +186,13 @@ public class TestSchemaCompatibility {
     final Schema invalidReader = Schema.createMap(STRING_SCHEMA);
     final SchemaPairCompatibility validResult =
         new SchemaPairCompatibility(
-            SchemaCompatibility.SchemaCompatibilityResult.compatible(),
+            SchemaCompatibilityResult.compatible(),
             validReader,
             STRING_ARRAY_SCHEMA,
             SchemaCompatibility.READER_WRITER_COMPATIBLE_MESSAGE);
     final SchemaPairCompatibility invalidResult =
         new SchemaPairCompatibility(
-            SchemaCompatibility.SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.TYPE_MISMATCH, invalidReader, STRING_ARRAY_SCHEMA, 
+            SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.TYPE_MISMATCH, invalidReader, STRING_ARRAY_SCHEMA,
                 "reader type: MAP not compatible with writer type: ARRAY", Arrays.asList("")),
             invalidReader,
             STRING_ARRAY_SCHEMA,
@@ -215,13 +215,13 @@ public class TestSchemaCompatibility {
     final Schema validReader = Schema.create(Schema.Type.STRING);
     final SchemaPairCompatibility validResult =
         new SchemaPairCompatibility(
-            SchemaCompatibility.SchemaCompatibilityResult.compatible(),
+            SchemaCompatibilityResult.compatible(),
             validReader,
             STRING_SCHEMA,
             SchemaCompatibility.READER_WRITER_COMPATIBLE_MESSAGE);
     final SchemaPairCompatibility invalidResult =
         new SchemaPairCompatibility(
-            SchemaCompatibility.SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.TYPE_MISMATCH, INT_SCHEMA, STRING_SCHEMA, 
+            SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.TYPE_MISMATCH, INT_SCHEMA, STRING_SCHEMA,
                 "reader type: INT not compatible with writer type: STRING", Arrays.asList("")),
             INT_SCHEMA,
             STRING_SCHEMA,
