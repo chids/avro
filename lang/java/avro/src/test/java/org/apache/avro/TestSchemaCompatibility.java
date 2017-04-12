@@ -68,7 +68,7 @@ import org.apache.avro.compatibility.SchemaCompatibility;
 import org.apache.avro.compatibility.SchemaCompatibility.SchemaCompatibilityResult;
 import org.apache.avro.compatibility.SchemaCompatibility.SchemaCompatibilityType;
 import org.apache.avro.compatibility.SchemaCompatibility.SchemaIncompatibilityType;
-import org.apache.avro.compatibility.SchemaCompatibility.SchemaPairCompatibility;
+import org.apache.avro.compatibility.SchemaPairCompatibility;
 import org.apache.avro.TestSchemas.ReaderWriter;
 import org.apache.avro.generic.GenericData.EnumSymbol;
 import org.apache.avro.generic.GenericDatumReader;
@@ -100,8 +100,8 @@ public class TestSchemaCompatibility {
     final List<Schema.Field> readerFields = list(
         new Schema.Field("oldfield1", INT_SCHEMA, null, null));
     final Schema reader = Schema.createRecord(readerFields);
-    final SchemaCompatibility.SchemaPairCompatibility expectedResult =
-        new SchemaCompatibility.SchemaPairCompatibility(
+    final SchemaPairCompatibility expectedResult =
+        new SchemaPairCompatibility(
             SchemaCompatibility.SchemaCompatibilityResult.compatible(),
             reader,
             WRITER_SCHEMA,
@@ -116,8 +116,8 @@ public class TestSchemaCompatibility {
     final List<Schema.Field> readerFields = list(
         new Schema.Field("oldfield2", STRING_SCHEMA, null, null));
     final Schema reader = Schema.createRecord(readerFields);
-    final SchemaCompatibility.SchemaPairCompatibility expectedResult =
-        new SchemaCompatibility.SchemaPairCompatibility(
+    final SchemaPairCompatibility expectedResult =
+        new SchemaPairCompatibility(
             SchemaCompatibility.SchemaCompatibilityResult.compatible(),
             reader,
             WRITER_SCHEMA,
@@ -133,8 +133,8 @@ public class TestSchemaCompatibility {
         new Schema.Field("oldfield1", INT_SCHEMA, null, null),
         new Schema.Field("oldfield2", STRING_SCHEMA, null, null));
     final Schema reader = Schema.createRecord(readerFields);
-    final SchemaCompatibility.SchemaPairCompatibility expectedResult =
-        new SchemaCompatibility.SchemaPairCompatibility(
+    final SchemaPairCompatibility expectedResult =
+        new SchemaPairCompatibility(
             SchemaCompatibility.SchemaCompatibilityResult.compatible(),
             reader,
             WRITER_SCHEMA,
@@ -150,8 +150,8 @@ public class TestSchemaCompatibility {
         new Schema.Field("oldfield1", INT_SCHEMA, null, null),
         new Schema.Field("newfield1", INT_SCHEMA, null, 42));
     final Schema reader = Schema.createRecord(readerFields);
-    final SchemaCompatibility.SchemaPairCompatibility expectedResult =
-        new SchemaCompatibility.SchemaPairCompatibility(
+    final SchemaPairCompatibility expectedResult =
+        new SchemaPairCompatibility(
             SchemaCompatibility.SchemaCompatibilityResult.compatible(),
             reader,
             WRITER_SCHEMA,
@@ -184,14 +184,14 @@ public class TestSchemaCompatibility {
   public void testValidateArrayWriterSchema() throws Exception {
     final Schema validReader = Schema.createArray(STRING_SCHEMA);
     final Schema invalidReader = Schema.createMap(STRING_SCHEMA);
-    final SchemaCompatibility.SchemaPairCompatibility validResult =
-        new SchemaCompatibility.SchemaPairCompatibility(
+    final SchemaPairCompatibility validResult =
+        new SchemaPairCompatibility(
             SchemaCompatibility.SchemaCompatibilityResult.compatible(),
             validReader,
             STRING_ARRAY_SCHEMA,
             SchemaCompatibility.READER_WRITER_COMPATIBLE_MESSAGE);
-    final SchemaCompatibility.SchemaPairCompatibility invalidResult =
-        new SchemaCompatibility.SchemaPairCompatibility(
+    final SchemaPairCompatibility invalidResult =
+        new SchemaPairCompatibility(
             SchemaCompatibility.SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.TYPE_MISMATCH, invalidReader, STRING_ARRAY_SCHEMA, 
                 "reader type: MAP not compatible with writer type: ARRAY", Arrays.asList("")),
             invalidReader,
@@ -213,14 +213,14 @@ public class TestSchemaCompatibility {
   @Test
   public void testValidatePrimitiveWriterSchema() throws Exception {
     final Schema validReader = Schema.create(Schema.Type.STRING);
-    final SchemaCompatibility.SchemaPairCompatibility validResult =
-        new SchemaCompatibility.SchemaPairCompatibility(
+    final SchemaPairCompatibility validResult =
+        new SchemaPairCompatibility(
             SchemaCompatibility.SchemaCompatibilityResult.compatible(),
             validReader,
             STRING_SCHEMA,
             SchemaCompatibility.READER_WRITER_COMPATIBLE_MESSAGE);
-    final SchemaCompatibility.SchemaPairCompatibility invalidResult =
-        new SchemaCompatibility.SchemaPairCompatibility(
+    final SchemaPairCompatibility invalidResult =
+        new SchemaPairCompatibility(
             SchemaCompatibility.SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.TYPE_MISMATCH, INT_SCHEMA, STRING_SCHEMA, 
                 "reader type: INT not compatible with writer type: STRING", Arrays.asList("")),
             INT_SCHEMA,
