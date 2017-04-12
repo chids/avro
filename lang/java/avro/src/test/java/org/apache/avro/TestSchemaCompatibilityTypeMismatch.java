@@ -41,7 +41,7 @@ import static org.apache.avro.TestSchemas.STRING_SCHEMA;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.avro.SchemaCompatibility.SchemaIncompatibilityType;
+import org.apache.avro.compatibility.SchemaCompatibility.SchemaIncompatibilityType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

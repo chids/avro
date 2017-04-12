@@ -17,7 +17,7 @@
  */
 package org.apache.avro;
 
-import static org.apache.avro.SchemaCompatibility.checkReaderWriterCompatibility;
+import static org.apache.avro.compatibility.SchemaCompatibility.checkReaderWriterCompatibility;
 import static org.apache.avro.TestSchemas.A_DINT_B_DINT_RECORD1;
 import static org.apache.avro.TestSchemas.A_DINT_RECORD1;
 import static org.apache.avro.TestSchemas.A_INT_B_DINT_RECORD1;
@@ -64,12 +64,11 @@ import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.avro.Schema;
-import org.apache.avro.SchemaCompatibility;
-import org.apache.avro.SchemaCompatibility.SchemaCompatibilityResult;
-import org.apache.avro.SchemaCompatibility.SchemaCompatibilityType;
-import org.apache.avro.SchemaCompatibility.SchemaIncompatibilityType;
-import org.apache.avro.SchemaCompatibility.SchemaPairCompatibility;
+import org.apache.avro.compatibility.SchemaCompatibility;
+import org.apache.avro.compatibility.SchemaCompatibility.SchemaCompatibilityResult;
+import org.apache.avro.compatibility.SchemaCompatibility.SchemaCompatibilityType;
+import org.apache.avro.compatibility.SchemaCompatibility.SchemaIncompatibilityType;
+import org.apache.avro.compatibility.SchemaCompatibility.SchemaPairCompatibility;
 import org.apache.avro.TestSchemas.ReaderWriter;
 import org.apache.avro.generic.GenericData.EnumSymbol;
 import org.apache.avro.generic.GenericDatumReader;
