@@ -1,5 +1,6 @@
 package org.apache.avro.compatibility;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.avro.Schema;
@@ -114,55 +115,23 @@ public final class SchemaCompatibilityResult {
 
   /** {@inheritDoc} */
   @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((mMessage == null) ? 0 : mMessage.hashCode());
-    result = prime * result + ((mReaderSubset == null) ? 0 : mReaderSubset.hashCode());
-    result = prime * result
-        + ((mCompatibility == null) ? 0 : mCompatibility.hashCode());
-    result = prime * result
-        + ((mSchemaIncompatibilityType == null) ? 0 : mSchemaIncompatibilityType.hashCode());
-    result = prime * result + ((mWriterSubset == null) ? 0 : mWriterSubset.hashCode());
-    result = prime * result + ((mLocation == null) ? 0 : mLocation.hashCode());
-    return result;
+  public boolean equals(Object other) {
+    if ((null != other) && (other instanceof SchemaCompatibilityResult)) {
+      final SchemaCompatibilityResult result = (SchemaCompatibilityResult) other;
+      return SchemaCompatibility.objectsEqual(result.mMessage, mMessage)
+              && SchemaCompatibility.objectsEqual(result.mReaderSubset, mReaderSubset)
+              && SchemaCompatibility.objectsEqual(result.mWriterSubset, mWriterSubset)
+              && SchemaCompatibility.objectsEqual(result.mCompatibility, mCompatibility)
+              && SchemaCompatibility.objectsEqual(result.mLocation, mLocation);
+    } else {
+      return false;
+    }
   }
 
   /** {@inheritDoc} */
   @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    SchemaCompatibilityResult other = (SchemaCompatibilityResult) obj;
-    if (mMessage == null) {
-      if (other.mMessage != null)
-        return false;
-    } else if (!mMessage.equals(other.mMessage))
-      return false;
-    if (mReaderSubset == null) {
-      if (other.mReaderSubset != null)
-        return false;
-    } else if (!mReaderSubset.equals(other.mReaderSubset))
-      return false;
-    if (mCompatibility != other.mCompatibility)
-      return false;
-    if (mSchemaIncompatibilityType != other.mSchemaIncompatibilityType)
-      return false;
-    if (mWriterSubset == null) {
-      if (other.mWriterSubset != null)
-        return false;
-    } else if (!mWriterSubset.equals(other.mWriterSubset))
-      return false;
-    if (mLocation == null) {
-      if (other.mLocation != null)
-        return false;
-    } else if (!mLocation.equals(other.mLocation))
-      return false;
-    return true;
+  public int hashCode() {
+    return Arrays.hashCode(new Object[]{mMessage, mReaderSubset, mCompatibility, mSchemaIncompatibilityType, mWriterSubset, mLocation});
   }
 
   /** {@inheritDoc} */
