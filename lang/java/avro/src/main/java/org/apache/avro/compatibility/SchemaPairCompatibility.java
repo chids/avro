@@ -25,7 +25,6 @@ public final class SchemaPairCompatibility {
   /**
    * Constructs a new instance.
    * @param result The result of the compatibility check.
-   * @param type of the schema compatibility.
    * @param reader schema that was validated.
    * @param writer schema that was validated.
    * @param description of this compatibility result.

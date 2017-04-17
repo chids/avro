@@ -24,8 +24,6 @@ import org.apache.avro.AvroRuntimeException;
 import org.apache.avro.Schema;
 import org.apache.avro.Schema.Field;
 import org.apache.avro.Schema.Type;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Evaluate the compatibility between a reader schema and a writer schema.
@@ -33,7 +31,6 @@ import org.slf4j.LoggerFactory;
  * schema can be successfully decoded using the specified reader schema.
  */
 public class SchemaCompatibility {
-  private static final Logger LOG = LoggerFactory.getLogger(SchemaCompatibility.class);
 
   /** Utility class cannot be instantiated. */
   private SchemaCompatibility() {

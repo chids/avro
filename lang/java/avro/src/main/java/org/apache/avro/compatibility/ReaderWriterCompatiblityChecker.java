@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * <p> Provides memoization to handle recursive schemas. </p>
  */
 final class ReaderWriterCompatiblityChecker {
-  private static final Logger LOG = LoggerFactory.getLogger(SchemaCompatibility.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ReaderWriterCompatiblityChecker.class);
   private static final String ROOT_REFERENCE_TOKEN = "";
   private final Map<ReaderWriter, SchemaCompatibilityResult> mMemoizeMap =
       new HashMap<ReaderWriter, SchemaCompatibilityResult>();
