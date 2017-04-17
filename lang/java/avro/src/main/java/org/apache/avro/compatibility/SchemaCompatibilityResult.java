@@ -10,7 +10,7 @@ import org.apache.avro.Schema;
  * compatibility check.
  */
 public final class SchemaCompatibilityResult {
-  private final SchemaCompatibility.SchemaCompatibilityType mCompatibility;
+  private final SchemaCompatibilityType mCompatibility;
   // the below fields are only valid if INCOMPATIBLE
   private final SchemaIncompatibilityType mSchemaIncompatibilityType;
   private final Schema mReaderSubset;
@@ -19,11 +19,11 @@ public final class SchemaCompatibilityResult {
   private final List<String> mLocation;
   // cached objects for stateless details
   static final SchemaCompatibilityResult COMPATIBLE = new SchemaCompatibilityResult(
-      SchemaCompatibility.SchemaCompatibilityType.COMPATIBLE, null, null, null, null, null);
+      SchemaCompatibilityType.COMPATIBLE, null, null, null, null, null);
   private static final SchemaCompatibilityResult RECURSION_IN_PROGRESS = new SchemaCompatibilityResult(
-      SchemaCompatibility.SchemaCompatibilityType.RECURSION_IN_PROGRESS, null, null, null, null, null);
+      SchemaCompatibilityType.RECURSION_IN_PROGRESS, null, null, null, null, null);
 
-  private SchemaCompatibilityResult(SchemaCompatibility.SchemaCompatibilityType type,
+  private SchemaCompatibilityResult(SchemaCompatibilityType type,
                                     SchemaIncompatibilityType errorDetails,
                                     Schema readerDetails, Schema writerDetails, String message, List<String> location) {
     this.mCompatibility = type;
@@ -62,7 +62,7 @@ public final class SchemaCompatibilityResult {
    */
   public static SchemaCompatibilityResult incompatible(SchemaIncompatibilityType error,
                                                        Schema reader, Schema writer, String message, List<String> location) {
-    return new SchemaCompatibilityResult(SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE, error, reader,
+    return new SchemaCompatibilityResult(SchemaCompatibilityType.INCOMPATIBLE, error, reader,
         writer, message, location);
   }
 
@@ -70,7 +70,7 @@ public final class SchemaCompatibilityResult {
    * Returns the SchemaCompatibilityType, always non-null.
    * @return a SchemaCompatibilityType instance, always non-null
    */
-  public SchemaCompatibility.SchemaCompatibilityType getCompatibility() {
+  public SchemaCompatibilityType getCompatibility() {
     return mCompatibility;
   }
 
@@ -148,7 +148,7 @@ public final class SchemaCompatibilityResult {
    * @return JSON Pointer encoded as a string or {@code null} if there was no incompatibility.
    */
   public String getLocation() {
-    if (mCompatibility != SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE) {
+    if (mCompatibility != SchemaCompatibilityType.INCOMPATIBLE) {
       return null;
     }
     StringBuilder s = new StringBuilder("/");

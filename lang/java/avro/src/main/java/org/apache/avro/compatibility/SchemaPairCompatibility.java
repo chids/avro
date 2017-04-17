@@ -46,7 +46,7 @@ public final class SchemaPairCompatibility {
    *
    * @return the type of this result.
    */
-  public SchemaCompatibility.SchemaCompatibilityType getType() {
+  public SchemaCompatibilityType getType() {
     return mResult.getCompatibility();
   }
 

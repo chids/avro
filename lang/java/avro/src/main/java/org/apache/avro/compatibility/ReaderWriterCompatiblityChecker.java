@@ -60,7 +60,7 @@ final class ReaderWriterCompatiblityChecker {
     final ReaderWriter pair = new ReaderWriter(reader, writer);
     final SchemaCompatibilityResult existing = mMemoizeMap.get(pair);
     if (existing != null) {
-      if (existing.getCompatibility() == SchemaCompatibility.SchemaCompatibilityType.RECURSION_IN_PROGRESS) {
+      if (existing.getCompatibility() == SchemaCompatibilityType.RECURSION_IN_PROGRESS) {
         // Break the recursion here.
         // schemas are compatible unless proven incompatible:
         location.pop();
@@ -118,21 +118,21 @@ final class ReaderWriterCompatiblityChecker {
         }
         case FIXED: {
           SchemaCompatibilityResult nameCheck = checkSchemaNames(reader, writer, location);
-          if (nameCheck.getCompatibility() == SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE) {
+          if (nameCheck.getCompatibility() == SchemaCompatibilityType.INCOMPATIBLE) {
             return nameCheck;
           }
           return checkFixedSize(reader, writer, location);
         }
         case ENUM: {
           SchemaCompatibilityResult nameCheck = checkSchemaNames(reader, writer, location);
-          if (nameCheck.getCompatibility() == SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE) {
+          if (nameCheck.getCompatibility() == SchemaCompatibilityType.INCOMPATIBLE) {
             return nameCheck;
           }
           return checkReaderEnumContainsAllWriterEnumSymbols(reader, writer, location);
         }
         case RECORD: {
           SchemaCompatibilityResult nameCheck = checkSchemaNames(reader, writer, location);
-          if (nameCheck.getCompatibility() == SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE) {
+          if (nameCheck.getCompatibility() == SchemaCompatibilityType.INCOMPATIBLE) {
             return nameCheck;
           }
           return checkReaderWriterRecordFields(reader, writer, location);
@@ -143,7 +143,7 @@ final class ReaderWriterCompatiblityChecker {
           for (final Schema writerBranch : writer.getTypes()) {
             location.push(Integer.toString(i));
             SchemaCompatibilityResult compatibility = getCompatibility(reader, writerBranch);
-            if (compatibility.getCompatibility() == SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE) {
+            if (compatibility.getCompatibility() == SchemaCompatibilityType.INCOMPATIBLE) {
               String message = String.format("reader union lacking writer type: %s",
                   writerBranch.getType());
               return SchemaCompatibilityResult.incompatible(
@@ -171,7 +171,7 @@ final class ReaderWriterCompatiblityChecker {
         for (Schema s : writer.getTypes()) {
           location.push(Integer.toString(i));
           SchemaCompatibilityResult result = getCompatibility(reader, s);
-          if (result.getCompatibility() == SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE) {
+          if (result.getCompatibility() == SchemaCompatibilityType.INCOMPATIBLE) {
             return result;
           }
           location.pop();
@@ -221,7 +221,7 @@ final class ReaderWriterCompatiblityChecker {
         case UNION: {
           for (final Schema readerBranch : reader.getTypes()) {
             SchemaCompatibilityResult compatibility = getCompatibility(readerBranch, writer);
-            if (compatibility.getCompatibility() == SchemaCompatibility.SchemaCompatibilityType.COMPATIBLE) {
+            if (compatibility.getCompatibility() == SchemaCompatibilityType.COMPATIBLE) {
               return SchemaCompatibilityResult.compatible();
             }
           }
@@ -260,7 +260,7 @@ final class ReaderWriterCompatiblityChecker {
       } else {
         SchemaCompatibilityResult compatibility = getCompatibility("type", readerField.schema(),
             writerField.schema(), location);
-        if (compatibility.getCompatibility() == SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE) {
+        if (compatibility.getCompatibility() == SchemaCompatibilityType.INCOMPATIBLE) {
           return compatibility;
         }
       }

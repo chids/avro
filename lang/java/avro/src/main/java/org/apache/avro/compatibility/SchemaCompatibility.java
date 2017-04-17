@@ -139,17 +139,6 @@ public class SchemaCompatibility {
     }
   }
 
-  /**
-   * Identifies the type of a schema compatibility result.
-   */
-  public enum SchemaCompatibilityType {
-    COMPATIBLE,
-    INCOMPATIBLE,
-
-    /** Used internally to tag a reader/writer schema pair and prevent recursion. */
-    RECURSION_IN_PROGRESS;
-  }
-
   // -----------------------------------------------------------------------------------------------
 
   /** Borrowed from Guava's Objects.equal(a, b) */

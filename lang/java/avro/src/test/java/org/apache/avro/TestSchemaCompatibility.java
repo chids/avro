@@ -66,7 +66,7 @@ import java.util.List;
 
 import org.apache.avro.compatibility.SchemaCompatibility;
 import org.apache.avro.compatibility.SchemaCompatibilityResult;
-import org.apache.avro.compatibility.SchemaCompatibility.SchemaCompatibilityType;
+import org.apache.avro.compatibility.SchemaCompatibilityType;
 import org.apache.avro.compatibility.SchemaIncompatibilityType;
 import org.apache.avro.compatibility.SchemaPairCompatibility;
 import org.apache.avro.TestSchemas.ReaderWriter;
@@ -170,7 +170,7 @@ public class TestSchemaCompatibility {
     SchemaPairCompatibility compatibility = checkReaderWriterCompatibility(reader, WRITER_SCHEMA);
 
     // Test new field without default value.
-    assertEquals(SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE, compatibility.getType());
+    assertEquals(SchemaCompatibilityType.INCOMPATIBLE, compatibility.getType());
     assertEquals(SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.READER_FIELD_MISSING_DEFAULT_VALUE, reader, WRITER_SCHEMA, "newfield1", Arrays.asList("", "fields", "1")), compatibility.getResult());
     assertEquals(String.format("Data encoded using writer schema:%n%s%n"
         + "will or may fail to decode using reader schema:%n%s%n",
