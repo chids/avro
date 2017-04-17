@@ -15,18 +15,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.avro;
+package org.apache.avro.compatibility;
 
-import static org.apache.avro.TestSchemaCompatibility.validateIncompatibleSchemas;
-import static org.apache.avro.TestSchemas.A_DINT_B_DFIXED_4_BYTES_RECORD1;
-import static org.apache.avro.TestSchemas.A_DINT_B_DFIXED_8_BYTES_RECORD1;
-import static org.apache.avro.TestSchemas.FIXED_4_BYTES;
-import static org.apache.avro.TestSchemas.FIXED_8_BYTES;
+import static org.apache.avro.compatibility.TestSchemaCompatibility.validateIncompatibleSchemas;
+import static org.apache.avro.compatibility.TestSchemas.A_INT_B_DINT_RECORD1;
+import static org.apache.avro.compatibility.TestSchemas.A_INT_RECORD1;
+import static org.apache.avro.compatibility.TestSchemas.EMPTY_RECORD1;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.avro.compatibility.SchemaIncompatibilityType;
+import org.apache.avro.Schema;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -34,15 +33,12 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class TestSchemaCompatibilityFixedSizeMismatch {
-
+public class TestSchemaCompatibilityReaderFieldMissingDefaultValue {
   @Parameters(name = "r: {0} | w: {1}")
   public static Iterable<Object[]> data() {
     Object[][] fields = { //
-        { FIXED_4_BYTES, FIXED_8_BYTES, "expected: 8, found: 4", "/size" },
-        { FIXED_8_BYTES, FIXED_4_BYTES, "expected: 4, found: 8", "/size" },
-        { A_DINT_B_DFIXED_8_BYTES_RECORD1, A_DINT_B_DFIXED_4_BYTES_RECORD1, "expected: 4, found: 8", "/fields/1/type/size" },
-        { A_DINT_B_DFIXED_4_BYTES_RECORD1, A_DINT_B_DFIXED_8_BYTES_RECORD1, "expected: 8, found: 4", "/fields/1/type/size" },
+        { A_INT_RECORD1, EMPTY_RECORD1, "a", "/fields/0" },
+        { A_INT_B_DINT_RECORD1, EMPTY_RECORD1, "a", "/fields/0" }
     };
     List<Object[]> list = new ArrayList<Object[]>(fields.length);
     for (Object[] schemas : fields) {
@@ -59,10 +55,11 @@ public class TestSchemaCompatibilityFixedSizeMismatch {
   public String details;
   @Parameter(3)
   public String location;
-
+  
   @Test
-  public void testFixedSizeMismatchSchemas() throws Exception {
-    validateIncompatibleSchemas(reader, writer, SchemaIncompatibilityType.FIXED_SIZE_MISMATCH,
+  public void testReaderFieldMissingDefaultValueSchemas() throws Exception {
+    validateIncompatibleSchemas(reader, writer,
+        SchemaIncompatibilityType.READER_FIELD_MISSING_DEFAULT_VALUE,
         details, location);
   }
 }

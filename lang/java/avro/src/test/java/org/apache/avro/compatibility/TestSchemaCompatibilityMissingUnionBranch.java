@@ -15,32 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.avro;
+package org.apache.avro.compatibility;
 
-import static org.apache.avro.TestSchemaCompatibility.validateIncompatibleSchemas;
-import static org.apache.avro.TestSchemas.A_DINT_B_DINT_STRING_UNION_RECORD1;
-import static org.apache.avro.TestSchemas.A_DINT_B_DINT_UNION_RECORD1;
-import static org.apache.avro.TestSchemas.BOOLEAN_SCHEMA;
-import static org.apache.avro.TestSchemas.BYTES_UNION_SCHEMA;
-import static org.apache.avro.TestSchemas.DOUBLE_UNION_SCHEMA;
-import static org.apache.avro.TestSchemas.ENUM1_AB_SCHEMA;
-import static org.apache.avro.TestSchemas.FIXED_4_BYTES;
-import static org.apache.avro.TestSchemas.FLOAT_UNION_SCHEMA;
-import static org.apache.avro.TestSchemas.INT_ARRAY_SCHEMA;
-import static org.apache.avro.TestSchemas.INT_LONG_FLOAT_DOUBLE_UNION_SCHEMA;
-import static org.apache.avro.TestSchemas.INT_MAP_SCHEMA;
-import static org.apache.avro.TestSchemas.INT_SCHEMA;
-import static org.apache.avro.TestSchemas.INT_STRING_UNION_SCHEMA;
-import static org.apache.avro.TestSchemas.INT_UNION_SCHEMA;
-import static org.apache.avro.TestSchemas.LONG_UNION_SCHEMA;
-import static org.apache.avro.TestSchemas.NULL_SCHEMA;
-import static org.apache.avro.TestSchemas.STRING_UNION_SCHEMA;
-import static org.apache.avro.TestSchemas.list;
+import static org.apache.avro.compatibility.TestSchemaCompatibility.validateIncompatibleSchemas;
+import static org.apache.avro.compatibility.TestSchemas.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.avro.compatibility.SchemaIncompatibilityType;
+import org.apache.avro.Schema;
+import org.apache.avro.SchemaBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

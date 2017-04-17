@@ -15,17 +15,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.avro;
+package org.apache.avro.compatibility;
 
-import static org.apache.avro.TestSchemaCompatibility.validateIncompatibleSchemas;
-import static org.apache.avro.TestSchemas.ENUM1_ABC_SCHEMA;
-import static org.apache.avro.TestSchemas.ENUM1_AB_SCHEMA;
-import static org.apache.avro.TestSchemas.ENUM1_BC_SCHEMA;
+import static org.apache.avro.compatibility.TestSchemaCompatibility.validateIncompatibleSchemas;
+import static org.apache.avro.compatibility.TestSchemas.ENUM1_ABC_SCHEMA;
+import static org.apache.avro.compatibility.TestSchemas.ENUM1_AB_SCHEMA;
+import static org.apache.avro.compatibility.TestSchemas.ENUM1_BC_SCHEMA;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.avro.compatibility.SchemaIncompatibilityType;
+import org.apache.avro.Schema;
+import org.apache.avro.SchemaBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

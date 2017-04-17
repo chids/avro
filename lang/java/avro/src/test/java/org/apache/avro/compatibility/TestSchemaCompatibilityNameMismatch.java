@@ -15,21 +15,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.avro;
+package org.apache.avro.compatibility;
 
-import static org.apache.avro.TestSchemaCompatibility.validateIncompatibleSchemas;
-import static org.apache.avro.TestSchemas.A_DINT_B_DENUM_1_RECORD1;
-import static org.apache.avro.TestSchemas.A_DINT_B_DENUM_2_RECORD1;
-import static org.apache.avro.TestSchemas.EMPTY_RECORD1;
-import static org.apache.avro.TestSchemas.EMPTY_RECORD2;
-import static org.apache.avro.TestSchemas.ENUM1_AB_SCHEMA;
-import static org.apache.avro.TestSchemas.ENUM2_AB_SCHEMA;
-import static org.apache.avro.TestSchemas.FIXED_4_BYTES;
+import static org.apache.avro.compatibility.TestSchemaCompatibility.validateIncompatibleSchemas;
+import static org.apache.avro.compatibility.TestSchemas.A_DINT_B_DENUM_1_RECORD1;
+import static org.apache.avro.compatibility.TestSchemas.A_DINT_B_DENUM_2_RECORD1;
+import static org.apache.avro.compatibility.TestSchemas.EMPTY_RECORD1;
+import static org.apache.avro.compatibility.TestSchemas.EMPTY_RECORD2;
+import static org.apache.avro.compatibility.TestSchemas.ENUM1_AB_SCHEMA;
+import static org.apache.avro.compatibility.TestSchemas.ENUM2_AB_SCHEMA;
+import static org.apache.avro.compatibility.TestSchemas.FIXED_4_BYTES;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.avro.compatibility.SchemaIncompatibilityType;
+import org.apache.avro.Schema;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

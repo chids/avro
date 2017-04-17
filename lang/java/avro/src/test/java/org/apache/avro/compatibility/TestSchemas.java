@@ -15,15 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.avro;
+package org.apache.avro.compatibility;
 
-import static org.apache.avro.TestSchemas.INT_STRING_UNION_SCHEMA;
-import static org.apache.avro.TestSchemas.INT_UNION_SCHEMA;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.apache.avro.Schema;
 import org.apache.avro.Schema.Field;
 
 /** Schemas used by other tests in this package. Therefore package protected. */
