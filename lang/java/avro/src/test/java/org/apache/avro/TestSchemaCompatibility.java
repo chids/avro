@@ -67,7 +67,7 @@ import java.util.List;
 import org.apache.avro.compatibility.SchemaCompatibility;
 import org.apache.avro.compatibility.SchemaCompatibilityResult;
 import org.apache.avro.compatibility.SchemaCompatibility.SchemaCompatibilityType;
-import org.apache.avro.compatibility.SchemaCompatibility.SchemaIncompatibilityType;
+import org.apache.avro.compatibility.SchemaIncompatibilityType;
 import org.apache.avro.compatibility.SchemaPairCompatibility;
 import org.apache.avro.TestSchemas.ReaderWriter;
 import org.apache.avro.generic.GenericData.EnumSymbol;

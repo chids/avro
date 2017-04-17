@@ -147,7 +147,7 @@ final class ReaderWriterCompatiblityChecker {
               String message = String.format("reader union lacking writer type: %s",
                   writerBranch.getType());
               return SchemaCompatibilityResult.incompatible(
-                  SchemaCompatibility.SchemaIncompatibilityType.MISSING_UNION_BRANCH,
+                  SchemaIncompatibilityType.MISSING_UNION_BRANCH,
                   reader, writer, message, location);
             }
             location.pop();
@@ -228,7 +228,7 @@ final class ReaderWriterCompatiblityChecker {
           // No branch in the reader union has been found compatible with the writer schema:
           String message = String.format("reader union lacking writer type: %s", writer.getType());
           return SchemaCompatibilityResult.incompatible(
-              SchemaCompatibility.SchemaIncompatibilityType.MISSING_UNION_BRANCH,
+              SchemaIncompatibilityType.MISSING_UNION_BRANCH,
               reader, writer, message, location);
         }
 
@@ -254,7 +254,7 @@ final class ReaderWriterCompatiblityChecker {
         if (readerField.defaultValue() == null) {
           // reader field has no default value
           return SchemaCompatibilityResult.incompatible(
-              SchemaCompatibility.SchemaIncompatibilityType.READER_FIELD_MISSING_DEFAULT_VALUE, reader, writer,
+              SchemaIncompatibilityType.READER_FIELD_MISSING_DEFAULT_VALUE, reader, writer,
               readerField.name(), location);
         }
       } else {
@@ -279,7 +279,7 @@ final class ReaderWriterCompatiblityChecker {
     symbols.removeAll(reader.getEnumSymbols());
     if (!symbols.isEmpty()) {
       return SchemaCompatibilityResult.incompatible(
-          SchemaCompatibility.SchemaIncompatibilityType.MISSING_ENUM_SYMBOLS, reader, writer,
+          SchemaIncompatibilityType.MISSING_ENUM_SYMBOLS, reader, writer,
           symbols.toString(), location);
     }
     location.pop();
@@ -293,7 +293,7 @@ final class ReaderWriterCompatiblityChecker {
     if (actual != expected) {
       String message = String.format("expected: %d, found: %d", expected, actual);
       return SchemaCompatibilityResult.incompatible(
-          SchemaCompatibility.SchemaIncompatibilityType.FIXED_SIZE_MISMATCH, reader,
+          SchemaIncompatibilityType.FIXED_SIZE_MISMATCH, reader,
           writer, message, location);
     }
     location.pop();
@@ -305,7 +305,7 @@ final class ReaderWriterCompatiblityChecker {
     if (!SchemaCompatibility.schemaNameEquals(reader, writer)) {
       String message = String.format("expected: %s", writer.getFullName());
       return SchemaCompatibilityResult.incompatible(
-          SchemaCompatibility.SchemaIncompatibilityType.NAME_MISMATCH,
+          SchemaIncompatibilityType.NAME_MISMATCH,
           reader, writer, message, location);
     }
     location.pop();
@@ -315,7 +315,7 @@ final class ReaderWriterCompatiblityChecker {
   private SchemaCompatibilityResult typeMismatch(final Schema reader, final Schema writer, final Stack<String> location) {
     String message = String.format("reader type: %s not compatible with writer type: %s",
         reader.getType(), writer.getType());
-    return SchemaCompatibilityResult.incompatible(SchemaCompatibility.SchemaIncompatibilityType.TYPE_MISMATCH,
+    return SchemaCompatibilityResult.incompatible(SchemaIncompatibilityType.TYPE_MISMATCH,
         reader, writer, message, location);
   }
 }

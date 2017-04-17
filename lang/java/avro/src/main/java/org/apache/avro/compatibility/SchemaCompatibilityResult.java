@@ -12,7 +12,7 @@ import org.apache.avro.Schema;
 public final class SchemaCompatibilityResult {
   private final SchemaCompatibility.SchemaCompatibilityType mCompatibility;
   // the below fields are only valid if INCOMPATIBLE
-  private final SchemaCompatibility.SchemaIncompatibilityType mSchemaIncompatibilityType;
+  private final SchemaIncompatibilityType mSchemaIncompatibilityType;
   private final Schema mReaderSubset;
   private final Schema mWriterSubset;
   private final String mMessage;
@@ -24,7 +24,7 @@ public final class SchemaCompatibilityResult {
       SchemaCompatibility.SchemaCompatibilityType.RECURSION_IN_PROGRESS, null, null, null, null, null);
 
   private SchemaCompatibilityResult(SchemaCompatibility.SchemaCompatibilityType type,
-                                    SchemaCompatibility.SchemaIncompatibilityType errorDetails,
+                                    SchemaIncompatibilityType errorDetails,
                                     Schema readerDetails, Schema writerDetails, String message, List<String> location) {
     this.mCompatibility = type;
     this.mSchemaIncompatibilityType = errorDetails;
@@ -60,7 +60,7 @@ public final class SchemaCompatibilityResult {
    *         SchemaCompatibilityType, and state representing the violating
    *         part.
    */
-  public static SchemaCompatibilityResult incompatible(SchemaCompatibility.SchemaIncompatibilityType error,
+  public static SchemaCompatibilityResult incompatible(SchemaIncompatibilityType error,
                                                        Schema reader, Schema writer, String message, List<String> location) {
     return new SchemaCompatibilityResult(SchemaCompatibility.SchemaCompatibilityType.INCOMPATIBLE, error, reader,
         writer, message, location);
@@ -80,7 +80,7 @@ public final class SchemaCompatibilityResult {
    * null.
    * @return a SchemaIncompatibilityType instance, or null
    */
-  public SchemaCompatibility.SchemaIncompatibilityType getIncompatibility() {
+  public SchemaIncompatibilityType getIncompatibility() {
     return mSchemaIncompatibilityType;
   }
 

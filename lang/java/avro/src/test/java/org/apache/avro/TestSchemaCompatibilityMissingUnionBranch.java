@@ -40,7 +40,7 @@ import static org.apache.avro.TestSchemas.list;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.avro.compatibility.SchemaCompatibility.SchemaIncompatibilityType;
+import org.apache.avro.compatibility.SchemaIncompatibilityType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
